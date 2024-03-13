@@ -1,0 +1,12 @@
+#!/bin/sh
+
+nBytes=100
+
+if [ "$(./randall "$nBytes" | wc -c)" = "$nBytes" ]
+then
+    :
+else
+    echo "Failed: ./randall "$nBytes" | wc -c"
+    exit 1
+fi
+

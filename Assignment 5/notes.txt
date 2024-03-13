@@ -1,0 +1,84 @@
+Notes:
+
+I first cloned the repository, examining all of the files within and seeing what each one
+seemed to do. I was being dumb and completely forgot how to see the gitignore file and sp
+ent an embarassingly long amount of time freakin
+g out about why I couldn't
+see it when I used the ls comm
+and. After this, I took a clos
+er look at randall.c and
+Makefile to try and understand what they did specifically.
+
+I added the following code to the end of
+Makefile along with a file called "tester", which tested the program:
+
+check: tester randall
+        ./tester
+
+This made it so that the Makefile ran the tester
+file on my code when I used the "make check" command.
+
+The next portion of the Assignment consisted of me spliiting up the in
+dividual sections of the code into different files. I started with what see
+med like the simplest files to copy over, which were the hardware and software f
+iles. I did this by first making a header file with header guards and all of the
+function names. I also removed the word static so that the functions could be us
+ed across files. I did this for both the hardware and software sections of the code.
+
+After this, I moved the actual implementation of the functions into the respecti
+ve .c files. For the output files, I simply moved the writebytes function into t
+he files with the respective header file, header guards, and implementation in the .c file.
+
+The options files gave me some trouble at first because I was not exactly sure w
+hat to put in the files, so I originally moved on from this to come back to later. 
+
+For each set of files, I tried my best to only include what was needed, making s
+ure to not "double include" names in both the header and .c files.
+
+After reading more of the spec, I saw what the options.c and options.h files wer
+e for. In these files, I made a function that I called myFunc, which took a few
+arguments that were found in the main section of randall.c. The files would use
+this function in order to determine the case that I was dealing with, depending
+on the flag that came before it. I used a switch statement to handle these different options.
+
+I started with the -o case, as I seemed to quickly come up with some ideas of how
+to implement these when looking at the spec. I then moved on to the -i case. I rounded
+out the switch statement after that with its : and ? cases. 
+
+After lots of debugging and tweaking my function in options, I made a few extra
+test cases in tester and called myFunc in randall.c and assigned it to a variable.
+I then used this variable in replacement of the original variable (I can't remember
+the original name as I am typing this part much after I have changed the variable
+name) that was found in the first if statement that said if (!valid){...}. I
+called this variable test.
+
+After changing the variable names in the main function, #include- ing the proper
+header files and other names, I ran my code to see if it worked, which it did (after
+many, many failed attempts). I tested my code with the tester file I made and it passed (
+again, many attempts).
+
+Lastly, I timed the implementation and got the following results.
+
+For time dd if=/dev/urandom ibs=8192 obs=8192 count=16384 >/dev/null:
+real	0m0.937s
+user	0m0.018s
+sys	0m0.913s
+
+
+For time ./randall 133562368 >/dev/null:
+real	0m1.260s
+user	0m1.236s
+sys	0m0.019s
+
+
+For time ./randall 133562368 | cat >/dev/null:
+real	0m1.376s
+user	0m1.277s
+sys	0m0.251s
+
+
+For time ./randall 133562368 >rand.data:
+real	0m2.973s
+user	0m1.237s
+sys	0m0.119s
+
