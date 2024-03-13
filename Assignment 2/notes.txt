@@ -1,0 +1,58 @@
+Exercise 2.1
+Evaluating the first expression in emacs, we get the following output:
+7777777777777777777777777777777777777777777777777777777777777777, #x1ffffffffff\
+fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\
+fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\
+fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+By typing in the following command:
+(* (expt 2 (- 607 1)) (- (expt 2 607) 1))
+
+
+We type in the following to find the number of bits to express this:
+(1+ (floor (logb (- (* (expt 2 (- 607 1)) (expt 2 607)) 1))))
+And get the output:
+1213
+
+
+Using the eval command, we get the following output:
+7777777777777777777777777777777777777777777777777777777777777777, #x1ffffffffff\
+fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\
+fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\
+fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+
+
+Typing ‘C-h k’ brings us to a prompt that tells us to input a key, mouse click, or menu item that we want described. When we type this again, it tells us this is called the describe-key command, which will describe and key given. This happens because ‘C-h k’ is used to bring up the describe-key command, then we ask to describe the same command, and the description is given.
+
+
+Typing ‘C-h k M-SPC’ describes the just-one-space command. It tells us that it is an interactive byte-compiled Lisp function in ‘simple.el’, and that it deletes all spaces and tabs around a point and leaves only one space in their place. The general function name for this is ‘just-one-space’.
+
+
+
+
+Times for different python versions:
+Python 3.11 or later: 
+real        0m0.732s
+user        0m0.688s
+sys        0m0.029s
+Earlier Version of Python:
+real        0m0.717s
+user        0m0.663s
+sys        0m0.037s
+
+
+
+
+
+
+
+
+Coreutils:
+real        0m0.066s
+user        0m0.051s
+sys        0m0.012s
+
+
+
+The code works in Python 3, but not Python 2 because structural pattern matching was not added into Python yet when Python 2 was the latest version.
