@@ -1,0 +1,159 @@
+﻿Chris Head
+
+
+Chorus Lapilli
+
+
+To begin with, I started with the tic-tac-toe code that worked for the previous section of the assignment so that I would have a ground work to begin with. 
+
+
+Since we already have a function that handles and updates the current move from the tic-tac-toe game, there is no need to update anything on this front. 
+
+
+Now, we must handle the problem of finding which squares any given character is allowed to move to. In other words, we must find the adjacent squares to the current move. I create a function called valid_move that checks if the move attempting to be done is valid or not.
+
+
+We implement this function using a switch statement that checks for each possible last/current index pairing:
+
+
+function validMove(current, last){
+  switch (current){
+    case 0:
+      return last===1||last===3||last===4;
+    case 1:
+      return last===0||last===2||last===3||last===4||last===5;
+    case 2:
+      return last===1||last===4||last===5;
+    case 3:
+      return last===0||last===1||last===4||last===6||last===7;
+    case 4:
+      //the character can always move to position 4
+      return true;
+    case 5:
+      return last===1||last===2||last===4||last===7||last===8;
+    case 6:
+      return last===3||last===4||last===7;
+    case 7:
+      return last===3||last===4||last===5||last===6||last===8;
+    case 8:
+      return last===7||last===4||last===5;
+    default:
+      return;
+
+
+  }
+
+
+}
+
+
+Now we have to handle the function of the game in which the rules change after 3 moves for each player. To do this, we check if 6 total moves have been played and go from there. We use if statements to check all of the basic rules before allowing a play to happen. First, we create a new previous state object and check if the first click is that of an already taken square:
+
+
+ if (squares[i] === null && prevState !== -1){
+        console.log(prevState);
+        if (validMove(i, prevState) || prevState === i) {
+
+
+          if (xIsNext) nextSquares[i] = 'X';
+          else nextSquares[i] = 'O';
+
+
+          if (i === prevState) {
+            onPlay(prevSquares);
+          }
+          else onPlay(nextSquares)
+        }
+        else return;
+        setPrevState(-1);
+        setXMiddle(false);
+        setOMiddle(false);
+       
+      }
+
+
+
+
+If this is not the case, we check to see if there is a square in the middle and proceed from there.
+
+
+      if (squares[4] === 'X') setXMiddle(true);
+      if (squares[4] === 'O') setOMiddle(true);
+
+
+
+
+      if ((squares[i] === 'X' && xIsNext) || (squares[i] === 'O' && !xIsNext)) {
+         setPrevSquares([...squares]);
+          squares[i] = null;
+          setPrevState(i);
+
+
+      }
+
+
+Finally, outside of these if statements, we run the game as it is normally played in tic tac toe.
+
+
+   else{
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    
+    if (xIsNext) {
+      nextSquares[i] = 'X';
+    } else {
+      nextSquares[i] = 'O';
+    }
+    onPlay(nextSquares);
+  }
+
+
+
+
+  }
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = 'Winner: ' + winner;
+  } else {
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+  }
+
+
+
+
+The –dry-run function output the following
+
+
+npm notice 
+npm notice 📦  my-apps@0.1.0
+npm notice === Tarball Contents === 
+npm notice 3.4kB  README.md             
+npm notice 26.3kB my-apps-0.1.0.tgz     
+npm notice 810B   package.json          
+npm notice 3.9kB  public/favicon.ico    
+npm notice 1.7kB  public/index.html     
+npm notice 5.3kB  public/logo192.png    
+npm notice 9.7kB  public/logo512.png    
+npm notice 492B   public/manifest.json  
+npm notice 67B    public/robots.txt     
+npm notice 564B   src/App.css           
+npm notice 5.2kB  src/App.js            
+npm notice 246B   src/App.test.js       
+npm notice 366B   src/index.css         
+npm notice 535B   src/index.js          
+npm notice 2.6kB  src/logo.svg          
+npm notice 362B   src/reportWebVitals.js
+npm notice 241B   src/setupTests.js     
+npm notice === Tarball Details === 
+npm notice name:          my-apps                                 
+npm notice version:       0.1.0                                   
+npm notice filename:      my-apps-0.1.0.tgz                       
+npm notice package size:  52.9 kB                                 
+npm notice unpacked size: 61.9 kB                                 
+npm notice shasum:        7f93f8e674e2a1ba2979389947aa12b0d445d656
+npm notice integrity:     sha512-mbINy0Ro2rugB[...]MYMqimTbtggNg==
+npm notice total files:   17                                      
+npm notice 
+my-apps-0.1.0.tgz
