@@ -1,0 +1,17 @@
+﻿Within the ~eggert/src/github/git version of the repository, I got the following:
+
+
+  maint
+* master
+  next
+  seen
+  todo
+
+
+Whereas for the clone I made, I got:
+
+
+* master
+
+
+The eggert version of the repository has more branches that my cloned version does not have. This means that the users of the eggert version have opened and investigated more branches than I have so far.

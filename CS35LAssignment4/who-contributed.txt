@@ -1,0 +1,64 @@
+﻿First, to find when the commit with the line was made and the author/people who contributed to it, I used the command:
+git log -S “Even newspaper reports present contradictory information.” 
+
+
+Giving the following output:
+commit c12b432741eed9a422fbf99fa27af6e7a941d88b
+Author: Arthur David Olson <ado@elsie>
+Date:   Thu Dec 21 11:43:42 1995 -0500
+
+
+    Eggert changes
+    
+    SCCS-file: northamerica
+    SCCS-SID: 7.20
+
+
+This gives us the ID of the commit, so we can look further into who made this change.
+We use the following command:
+git show c12b432741eed9a422fbf99fa27af6e7a941d88b > outputA4.out
+
+
+
+
+
+
+We emacs into the file outputA4.out, use the incremental search C-s to find the line in question and get the following context:
+From Paul Eggert (1995-12-19):
++# Indiana generally observes either EST all year, or CST/CDT,
++# but areas near Cincinnati and Louisville use those cities' timekeeping
++# and in 1969 and 1970 the whole state observed daylight time;
++# and there are other exceptions as noted below.
++# Shanks partitions Indiana into 345 regions, each with its own time history,
++# and writes ``Even newspaper reports present contradictory information.''
++# Fortunately, most of the complexity occurred before our cutoff date of 1970.
++#
++# Since 1970, EST-only Indiana has been like America/Indianapolis,
++# with exceptions noted below for Crawford, Starke, and Switzerland counties.
++# The parts of Indiana not listed below have been like America/Chicago,
++# America/Louisville, or America/New_York.
++#
++# Other than Indianapolis, the Indiana place names are so nondescript
++# that they would be ambiguous if we left them at the `America' level.
++# So we reluctantly put them all in a subdirectory `America/Indiana'.
++#
++# Most of EST-only Indiana last observed DST in 1970.
++# Rule NAME    FROM    TO      TYPE    IN      ON      AT      SAVE    LETTER
++Rule Indianapolis 1941 only    -       Jun     22      2:00    1:00    D
++Rule Indianapolis 1941 1954    -       Sep     lastSun 2:00    0       S
++Rule Indianapolis 1946 1954    -       Apr     lastSun 2:00    1:00    D
++# Zone NAME            GMTOFF  RULES   FORMAT  [UNTIL]
++Zone America/Indianapolis -5:44:38 - LMT 1883 Nov 18 12:00
++                       -6:00   US      C%sT    1920
++                       -6:00 Indianapolis C%sT 1942
++                       -6:00   US      C%sT    1946
++                       -6:00 Indianapolis C%sT 1955 Apr 24 2:00
++                       -5:00   -       EST     1957 Sep 29 2:00
++                       -6:00   -       CST     1958 Apr 27 2:00
++                       -5:00   -       EST     1969
++                       -5:00   US      E%sT    1971
++                       -5:00   -       EST
++Link America/Indianapolis America/Indiana/Indianapolis
+
+
+We see that the contribution was made by Paul Eggert on 12/19/1995.

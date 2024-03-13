@@ -1,0 +1,134 @@
+﻿I started by typing in the command  git log --grep="segfault" and got the output:
+commit 86e16ed3a9fbf03bc8a5d4030177980193e30f57
+Author: Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+Date:   Thu Sep 1 01:18:14 2022 +0200
+
+
+    submodule--helper: libify even more "die" paths for module_update()
+    
+    As noted in a preceding commit the get_default_remote_submodule() and
+    remote_submodule_branch() functions would invoke die(), and thus leave
+    update_submodule() only partially lib-ified. We've addressed the
+    former of those in a preceding commit, let's now address the latter.
+    
+    In addition to lib-ifying the function this fixes a potential (but
+    obscure) segfault introduced by a logic error in
+    1012a5cbc3f (submodule--helper run-update-procedure: learn --remote,
+    2022-03-04):
+    
+    We were assuming that remote_submodule_branch() would always return
+    non-NULL, but if the submodule_from_path() call in that function fails
+    we'll return NULL. See its introduction in
+    92bbe7ccf1f (submodule--helper: add remote-branch helper,
+    2016-08-03). I.e. we'd previously have segfaulted in the xstrfmt()
+    call in update_submodule() seen in the context.
+    
+    Signed-off-by: Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+    Reviewed-by: Glen Choo <chooglen@google.com>
+    Signed-off-by: Junio C Hamano <gitster@pobox.com>
+
+
+commit 50992f96c546ebdc0c149660f6baa948739888d9
+Author: Fabian Stelzer <fs@gigacodes.de>
+Date:   Thu Dec 9 09:52:49 2021 +0100
+
+
+    ssh signing: verify ssh-keygen in test prereq
+    
+    Do a full ssh signing, find-principals and verify operation in the test
+    prereq's to make sure ssh-keygen works as expected. Only generating the
+    keys and verifying its presence is not sufficient in some situations.
+    One example was ssh-keygen creating unusable ssh keys in cygwin because
+    of unsafe default permissions for the key files. The other a broken
+    openssh 8.7 that segfaulted on any find-principals operation. This
+    extended prereq check avoids future test breakages in case ssh-keygen or
+    any environment behaviour changes.
+    
+    Signed-off-by: Fabian Stelzer <fs@gigacodes.de>
+    Signed-off-by: Junio C Hamano <gitster@pobox.com>
+
+
+commit 6aa501aab2668edcd3989dfe6f1cffb82552212c
+Merge: 79c887d29d 709b3f32d3
+Author: Junio C Hamano <gitster@pobox.com>
+Date:   Tue Oct 12 13:51:45 2021 -0700
+
+
+    Merge branch 'rs/range-diff-avoid-segfault-with-I' into maint
+    
+    "git range-diff -I... <range> <range>" segfaulted, which has been
+    corrected.
+    
+    * rs/range-diff-avoid-segfault-with-I:
+      range-diff: avoid segfault with -I
+
+
+commit 872c9e67ecf9ecb525e320e46171027c7742e76a
+Merge: ae9e6ef35e 8174627b3d
+Author: Junio C Hamano <gitster@pobox.com>
+Date:   Tue Oct 12 13:51:40 2021 -0700
+
+
+    Merge branch 'dd/diff-files-unmerged-fix' into maint
+    
+    "git diff --relative" segfaulted and/or produced incorrect result
+    when there are unmerged paths.
+    
+    * dd/diff-files-unmerged-fix:
+      diff-lib: ignore paths that are outside $cwd if --relative asked
+
+
+commit 3d141d87897676b81990fb47cdd75a562dd5dad9
+Merge: 1ea5e46cb9 709b3f32d3
+Author: Junio C Hamano <gitster@pobox.com>
+Date:   Wed Sep 15 13:15:27 2021 -0700
+
+
+    Merge branch 'rs/range-diff-avoid-segfault-with-I'
+    
+    "git range-diff -I... <range> <range>" segfaulted, which has been
+    corrected.
+    
+    * rs/range-diff-avoid-segfault-with-I:
+      range-diff: avoid segfault with -I
+
+
+commit c8f491668e46d66290aec97caaf94fe2c1ecccbd
+Merge: 85246a7054 8174627b3d
+Author: Junio C Hamano <gitster@pobox.com>
+Date:   Wed Sep 8 13:30:31 2021 -0700
+
+
+    Merge branch 'dd/diff-files-unmerged-fix'
+    
+    "git diff --relative" segfaulted and/or produced incorrect result
+    when there are unmerged paths.
+    
+    * dd/diff-files-unmerged-fix:
+      diff-lib: ignore paths that are outside $cwd if --relative asked
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The common denominator seems to be diff-lib. In the list of files, I found difflib.c. Looking within this file, I found the author "Đoàn Trần Công Danh". To look further into this, I used the command git blame diff-lib.c | grep "Đoàn Trần Công Danh" and got the output:
+
+
+8174627b3d3 diff-lib.c (Đoàn Trần Công Danh     2021-08-22 15:49:08 +0700 120) if (revs->diffopt.prefix &&
+8174627b3d3 diff-lib.c (Đoàn Trần Công Danh     2021-08-22 15:49:08 +0700 121)     strncmp(ce->name, revs->diffopt.prefix, revs->diffopt.prefix_length))
+8174627b3d3 diff-lib.c (Đoàn Trần Công Danh     2021-08-22 15:49:08 +0700 122) continue;
+8174627b3d3 diff-lib.c (Đoàn Trần Công Danh     2021-08-22 15:49:08 +0700 123) 
+
+
+
+
+Which is the code that fixes the problem.

@@ -1,0 +1,13 @@
+#!/bin/bash
+cat>input
+
+# read input from stdin, separate timezones
+timezones=($(grep "^Date:" input | grep -Eo "((\-.*)|(0000)|(\+.*))$" | sort -gu))
+
+# count num of occurrences of each timezone
+
+for tz in ${timezones[@]}
+do
+    count=$(grep "^Date:" input | grep -c "\\${tz}$")
+    echo "$tz $count"
+done
