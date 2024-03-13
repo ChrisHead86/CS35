@@ -1,0 +1,507 @@
+﻿Lab 1.5
+1. I used the which command to find the commands
+sh is found in /usr/bin
+sleep is found in /usr/local/cs/bin
+type is found in /usr/bin
+
+
+2. I used the cd command to get into the directory- then used “ls -l se?” to find the commands specified
+We find 2 commands: sed and seq
+sed- This is a stream editor that performs text transformations on an input- sed has the ability to filter text in a pipeline, which makes it different from other editors. Basically a stream editor for filtering/transforming text
+
+
+seq- prints a sequence of numbers
+
+
+3. Once we enter the directory, we use the command “ls -l emacs” to find the new path, then following that path, we find the file that is actually used.
+The path we first follow is “/etc/alternatives/emacs”
+We use the command “ls -l emacs” and get “/usr/bin/emacs-26.1”
+The file that is actually used is “/usr/bin/emacs-26.1”
+
+
+4. /usr/bin/gcc -v gives us the first version, which is 8.5.0
+Gcc -v gives us the plain version, which is 12.2.0
+
+
+They are different versions because they are contained within different directories- by using a different path, we run a different version of gcc as the more specific one may not have been updated.
+
+
+5. These two permissions explain that users that aren’t in the files group are not able to write in the file, and that the owner of the file can execute the file and set the group ID.
+
+
+6. Using the command find /usr/local/cs -type d -mtime -28, we get:
+/usr/local/cs
+/usr/local/cs/wget2-2.0.1
+/usr/local/cs/wget2-2.0.1/include
+/usr/local/cs/wget2-2.0.1/lib
+/usr/local/cs/wget2-2.0.1/lib/pkgconfig
+/usr/local/cs/wget2-2.0.1/bin
+/usr/local/cs/wget2-2.0.1/share
+/usr/local/cs/wget2-2.0.1/share/locale
+/usr/local/cs/wget2-2.0.1/share/locale/ca
+/usr/local/cs/wget2-2.0.1/share/locale/ca/LC_MESSAGES
+/usr/local/cs/wget2-2.0.1/share/locale/cs
+/usr/local/cs/wget2-2.0.1/share/locale/cs/LC_MESSAGES
+/usr/local/cs/wget2-2.0.1/share/locale/de
+/usr/local/cs/wget2-2.0.1/share/locale/de/LC_MESSAGES
+/usr/local/cs/wget2-2.0.1/share/locale/eo
+/usr/local/cs/wget2-2.0.1/share/locale/eo/LC_MESSAGES
+This continues on for 20+ more pages, however I decided to end here. Using the command “find /usr/local/cs -type d -mtime -28 | wc”, I found that there are 1337 entries.
+
+
+7. Using the command “find -type l | wc -l”, once inside of /usr/bin, I found that there are 327 symbolic links
+
+
+8. Using the command “ls -t” once inside of /usr/lib64, we see the oldest file is
+libbz2.so.1
+
+
+9. Using the help command in emacs “C-h”, then “a”, then typing “transpose”, we get the following list:
+transpose-chars               C-t
+   Interchange characters around point, moving forward one character.
+transpose-lines               C-x C-t
+   Exchange current line and previous line, leaving point after both.
+transpose-paragraphs          M-x ... RET
+   Interchange the current paragraph with the next one.
+transpose-regions             M-x ... RET
+   Transpose region STARTR1 to ENDR1 with STARTR2 to ENDR2.
+transpose-sentences           M-x ... RET
+   Interchange the current sentence with the next one.
+transpose-sexps               C-M-t
+   Like \[transpose-chars] (`transpose-chars'), but applies to sexps.
+transpose-words               M-t
+   Interchange words around point, leaving point at end of them.
+
+
+10. You can use the yank common using C-y. This effectively “pastes” the text last copied.
+
+
+11. First, the dired command gives more entries. Also, the “ls -l” command simply gives a list of the directories found within this directory, while in emacs, it gives an interactive list of the directories rather than a simple list.
+
+
+12. I used the following command and got the following output:
+$ ps aux -C xagt
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0 453304  8228 ?        Ss    2022  40:30 /usr/lib/systemd/systemd --switched-root 
+root           2  0.0  0.0      0     0 ?        S     2022   0:10 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<    2022   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<    2022   0:00 [rcu_par_gp]
+root           6  0.0  0.0      0     0 ?        I<    2022   0:00 [kworker/0:0H-events_highpri]
+root           9  0.0  0.0      0     0 ?        I<    2022   0:00 [mm_percpu_wq]
+root          10  0.0  0.0      0     0 ?        S     2022   3:31 [ksoftirqd/0]
+root          11  0.0  0.0      0     0 ?        I     2022 108:05 [rcu_sched]
+root          12  0.0  0.0      0     0 ?        S     2022   0:03 [migration/0]
+root          13  0.0  0.0      0     0 ?        S     2022   0:05 [watchdog/0]
+root          14  0.0  0.0      0     0 ?        S     2022   0:00 [cpuhp/0]
+root          15  0.0  0.0      0     0 ?        S     2022   0:00 [cpuhp/1]
+root          16  0.0  0.0      0     0 ?        S     2022   0:25 [watchdog/1]
+root          17  0.0  0.0      0     0 ?        S     2022   0:03 [migration/1]
+root          18  0.0  0.0      0     0 ?        S     2022   3:23 [ksoftirqd/1]
+root          20  0.0  0.0      0     0 ?        I<    2022   0:00 [kworker/1:0H-events_highpri]
+root          21  0.0  0.0      0     0 ?        S     2022   0:00 [cpuhp/2]
+root          22  0.0  0.0      0     0 ?        S     2022   0:23 [watchdog/2]
+root          23  0.0  0.0      0     0 ?        S     2022   0:04 [migration/2]
+root          24  0.0  0.0      0     0 ?        S     2022   3:35 [ksoftirqd/2]
+root          26  0.0  0.0      0     0 ?        I<    2022   0:00 [kworker/2:0H-events_highpri]
+root          27  0.0  0.0      0     0 ?        S     2022   0:00 [cpuhp/3]
+root          28  0.0  0.0      0     0 ?        S     2022   0:28 [watchdog/3]
+root          29  0.0  0.0      0     0 ?        S     2022   0:03 [migration/3]
+root          30  0.0  0.0      0     0 ?        S     2022   3:53 [ksoftirqd/3]
+root          32  0.0  0.0      0     0 ?        I<    2022   0:00 [kworker/3:0H-events_highpri]
+root          37  0.0  0.0      0     0 ?        S     2022   0:00 [kdevtmpfs]
+root          38  0.0  0.0      0     0 ?        I<    2022   0:00 [netns]
+root          39  0.0  0.0      0     0 ?        S     2022   0:00 [rcu_tasks_trace]
+root          40  0.0  0.0      0     0 ?        S     2022   0:00 [rcu_tasks_rude_]
+root          41  0.0  0.0      0     0 ?        S     2022   0:23 [kauditd]
+root          43  0.0  0.0      0     0 ?        S     2022   0:12 [khungtaskd]
+root          44  0.0  0.0      0     0 ?        S     2022   2:12 [oom_reaper]
+root          45  0.0  0.0      0     0 ?        I<    2022   0:00 [writeback]
+root          46  0.0  0.0      0     0 ?        S     2022   0:06 [kcompactd0]
+root          47  0.0  0.0      0     0 ?        SN    2022   0:00 [ksmd]
+root          48  0.0  0.0      0     0 ?        SN    2022   6:15 [khugepaged]
+root          49  0.0  0.0      0     0 ?        I<    2022   0:00 [crypto]
+root          50  0.0  0.0      0     0 ?        I<    2022   0:00 [kintegrityd]
+root          51  0.0  0.0      0     0 ?        I<    2022   0:00 [kblockd]
+root          52  0.0  0.0      0     0 ?        I<    2022   0:00 [blkcg_punt_bio]
+root          53  0.0  0.0      0     0 ?        I<    2022   0:00 [tpm_dev_wq]
+root          54  0.0  0.0      0     0 ?        I<    2022   0:00 [md]
+root          55  0.0  0.0      0     0 ?        I<    2022   0:00 [edac-poller]
+root          56  0.0  0.0      0     0 ?        S     2022   0:00 [watchdogd]
+root          58  0.0  0.0      0     0 ?        I<    2022   0:18 [kworker/0:1H-kblockd]
+root          91  0.0  0.0      0     0 ?        S     2022  22:55 [kswapd0]
+root         193  0.0  0.0      0     0 ?        I<    2022   0:00 [kthrotld]
+root         194  0.0  0.0      0     0 ?        I<    2022   0:00 [acpi_thermal_pm]
+root         195  0.0  0.0      0     0 ?        I<    2022   0:00 [kmpath_rdacd]
+root         196  0.0  0.0      0     0 ?        I<    2022   0:00 [kaluad]
+root         197  0.0  0.0      0     0 ?        I<    2022   0:07 [kworker/2:1H-kblockd]
+root         198  0.0  0.0      0     0 ?        I<    2022   0:00 [ipv6_addrconf]
+root         200  0.0  0.0      0     0 ?        I<    2022   0:00 [kstrp]
+root         288  0.0  0.0      0     0 ?        I<    2022   0:07 [kworker/1:1H-kblockd]
+root         318  0.0  0.0      0     0 ?        I<    2022   0:08 [kworker/3:1H-kblockd]
+root         526  0.0  0.0      0     0 ?        I<    2022   0:00 [hv_vmbus_con]
+root         530  0.0  0.0      0     0 ?        I<    2022   0:00 [hv_pri_chan]
+root         532  0.0  0.0      0     0 ?        I<    2022   0:00 [hv_sub_chan]
+root         538  0.0  0.0      0     0 ?        S     2022   0:00 [scsi_eh_0]
+root         539  0.0  0.0      0     0 ?        I<    2022   0:00 [scsi_tmf_0]
+root         540  0.0  0.0      0     0 ?        I<    2022   0:00 [storvsc_error_w]
+root         600  0.0  0.0      0     0 ?        I<    2022   0:00 [kdmflush]
+root         609  0.0  0.0      0     0 ?        I<    2022   0:00 [kdmflush]
+root         623  0.0  0.0      0     0 ?        I<    2022   0:00 [kdmflush]
+root         647  0.0  0.0      0     0 ?        S     2022   0:01 [jbd2/dm-0-8]
+root         648  0.0  0.0      0     0 ?        I<    2022   0:00 [ext4-rsv-conver]
+root         691  0.0  0.0      0     0 ?        S     2022   0:05 [jbd2/dm-2-8]
+root         692  0.0  0.0      0     0 ?        I<    2022   0:00 [ext4-rsv-conver]
+root         800  0.0  0.0  98692  2884 ?        Ss    2022   0:26 /usr/lib/systemd/systemd-udevd
+root         920  0.0  0.0      0     0 ?        S     2022   3:41 [hv_balloon]
+root         976  0.0  0.0      0     0 ?        I<    2022   0:00 [kdmflush]
+root         977  0.0  0.0      0     0 ?        I<    2022   0:00 [kdmflush]
+root         979  0.0  0.0      0     0 ?        I<    2022   0:00 [kdmflush]
+root         986  0.0  0.0      0     0 ?        I<    2022   0:00 [nfit]
+root        1041  0.0  0.0      0     0 ?        S     2022   0:57 [jbd2/dm-3-8]
+root        1042  0.0  0.0      0     0 ?        I<    2022   0:00 [ext4-rsv-conver]
+root        1047  0.0  0.0      0     0 ?        S     2022   0:00 [jbd2/sda2-8]
+root        1048  0.0  0.0      0     0 ?        I<    2022   0:00 [ext4-rsv-conver]
+root        1050  0.0  0.0      0     0 ?        S     2022   0:22 [jbd2/dm-4-8]
+root        1051  0.0  0.0      0     0 ?        I<    2022   0:00 [ext4-rsv-conver]
+root        1052  0.0  0.0      0     0 ?        S     2022   0:00 [jbd2/dm-5-8]
+root        1053  0.0  0.0      0     0 ?        I<    2022   0:00 [ext4-rsv-conver]
+rpc         1084  0.0  0.0  67312   868 ?        Ss    2022  36:28 /usr/bin/rpcbind -w -f
+root        1085  0.0  0.0      0     0 ?        I<    2022   0:00 [rpciod]
+root        1087  0.0  0.0      0     0 ?        I<    2022   0:00 [xprtiod]
+root        1091  0.0  0.0 166760   468 ?        S<sl  2022   4:40 /sbin/auditd
+root        1093  0.0  0.0  48956  1084 ?        S<    2022   1:41 /usr/sbin/sedispatch
+root        1116  0.0  0.0 218360  2628 ?        Ss    2022   0:23 /usr/sbin/sssd -i --logger=files
+polkitd     1118  0.0  0.0 1802452 13152 ?       Ssl   2022   2:22 /usr/lib/polkit-1/polkitd --no-debug
+root        1119  0.0  0.0  50260  1408 ?        Ss    2022   0:01 /usr/sbin/smartd -n -q never
+root        1120  0.0  0.0 124892   120 ?        Ssl   2022  17:55 /usr/sbin/irqbalance --foreground
+avahi       1123  0.0  0.0 100924  1104 ?        Ss    2022   0:30 avahi-daemon: running [lnxsrv11.local]
+root        1126  0.0  0.0   4372    60 ?        Ss    2022   0:00 /usr/sbin/hypervvssd -n
+dbus        1134  0.0  0.0 119576  6640 ?        Ss    2022  24:20 /usr/bin/dbus-daemon --system --address=s
+libstor+    1135  0.0  0.0   8608    32 ?        Ss    2022   0:36 /usr/bin/lsmd -d
+root        1136  0.0  0.0   6660     4 ?        Ss    2022   0:00 /usr/sbin/mcelog --ignorenodev --daemon -
+rngd        1140  0.0  0.0 154828    44 ?        Ssl   2022 100:26 /usr/sbin/rngd -f --fill-watermark=0
+root        1144  0.0  0.0   8076    16 ?        Ss    2022   0:00 /usr/sbin/gpm -m /dev/input/mice -t exps2
+chrony      1146  0.0  0.0  43484   172 ?        S     2022   0:26 /usr/sbin/chronyd
+avahi       1150  0.0  0.0 100796    36 ?        S     2022   0:00 avahi-daemon: chroot helper
+root        1188  0.0  0.0 227328  2832 ?        S     2022   2:20 /usr/libexec/sssd/sssd_be --domain implic
+root        1191  0.0  0.0 297188     4 ?        Ssl   2022   0:04 /usr/libexec/platform-python -s /usr/sbin
+root        1192  0.0  0.0 218004  2512 ?        S     2022   2:14 /usr/libexec/sssd/sssd_nss --uid 0 --gid 
+root        1438  0.0  0.0 380716  4468 ?        Ssl   2022 134:59 /usr/sbin/NetworkManager --no-daemon
+root        1518  0.0  0.0 487612  3176 ?        Ssl   2022  42:56 /usr/libexec/platform-python -Es /usr/sbi
+root        1543  0.0  0.0  76560  2036 ?        Ss    2022   0:59 /usr/sbin/sshd -D -oCiphers=aes256-gcm@op
+root        1544  0.0  0.0  34212    60 ?        Ss    2022   0:03 /usr/sbin/hypervkvpd -n
+root        1554  0.0  0.0  88908     0 ?        Ss    2022   0:00 /usr/sbin/rpc.ypxfrd -f -p 889
+root        1578  0.0  0.0  41784  1416 ?        Ss    2022   0:01 /usr/bin/rhsmcertd
+root        1595  0.0  0.0 178272   320 ?        Ssl   2022   0:22 /usr/sbin/ypbind -n
+root        1613  0.0  0.0 101776     0 ?        Ssl   2022   0:00 /usr/sbin/gssproxy -D
+root        1651  0.0  0.0 105484  3448 ?        Ss    2022   6:50 /usr/lib/systemd/systemd-logind
+root        1652  0.0  0.0 121556     0 ?        Ss    2022   0:00 /usr/sbin/cupsd -l
+root        2942  0.0  0.0      0     0 ?        I<    2022   0:00 [nfsiod]
+nrpe        2982  0.0  0.0  20748   492 ?        Ss    2022   0:44 /usr/sbin/nrpe -c /etc/nagios/nrpe.cfg -f
+root        3083  0.0  0.0  73932  1556 ?        Ss    2022   7:17 sendmail: accepting connections
+smmsp       3136  0.0  0.0  62236  1472 ?        Ss    2022   0:03 sendmail: Queue runner@01:00:00 for /var/
+rpcuser     3203  0.0  0.0  76076     8 ?        Ss    2022   0:00 /usr/sbin/rpc.statd
+root        3335  0.0  0.0      0     0 ?        S     2022   0:00 [lockd]
+root        3494  0.0  0.0  25820  1572 ?        Ss    2022   0:23 /usr/sbin/crond -n
+root        3500  0.0  0.0  26092    56 ?        Ss    2022   0:00 /usr/sbin/atd -f
+root        3504  0.0  0.0   6912     0 tty1     Ss+   2022   0:00 /sbin/agetty -o -p -- \u --noclear tty1 l
+root      276144  0.0  0.0 105952   120 ?        Ss    2022   0:14 /usr/sbin/certmonger -S -p /run/certmonge
+root      580411  0.0  0.0  91388  4008 ?        Ss    2022  11:40 /usr/sbin/ypserv -f -p 888
+root     1156958  0.0  0.0 545140  1184 ?        Ssl   2022   2:32 /usr/libexec/udisks2/udisksd
+root     1948512  0.0  0.0 719968 54416 ?        Ssl   2022  17:42 /usr/sbin/rsyslogd -n
+root     1949484  0.0  0.1 204676 91220 ?        Ss    2022   8:40 /usr/lib/systemd/systemd-journald
+sahil    2140854  0.0  0.0 1074178920 0 ?        Tl    2022   0:01 /usr/lib64/ghc-8.2.2/bin/ghc -B/usr/lib64
+classalv 3328736  0.0  0.0  90108 10444 ?        Ss   10:06   0:00 /usr/lib/systemd/systemd --user
+classalv 3328741  0.0  0.1 610196 102280 ?       S    10:06   0:00 (sd-pam)
+classalv 3328774  0.0  0.0 107408 31744 ?        Ss   10:06   0:00 /usr/bin/dbus-daemon --session --address=
+classalv 3328777  0.0  0.0 312912  9240 ?        Ssl  10:06   0:00 /usr/libexec/gvfsd
+classalv 3328844  0.0  0.0  12856  3140 ?        S    10:06   0:00 sh /u/eng/class/classalv/.vscode-server/b
+classalv 3328862  0.1  0.1 962276 88816 ?        Sl   10:06   0:40 /w/home.15/class/classalv/.vscode-server/
+classalv 3328917  0.1  0.1 1093316 74340 ?       Sl   10:06   0:28 /w/home.15/class/classalv/.vscode-server/
+hoggatt  3339747  0.0  0.0  90100 10212 ?        Ss   11:03   0:00 /usr/lib/systemd/systemd --user
+hoggatt  3339751  0.0  0.1 610196 102328 ?       S    11:03   0:00 (sd-pam)
+hoggatt  3339790  0.0  0.0 107408 31708 ?        Ss   11:03   0:00 /usr/bin/dbus-daemon --session --address=
+hoggatt  3339794  0.0  0.0 312912 11276 ?        Ssl  11:03   0:00 /usr/libexec/gvfsd
+root     3344602  0.0  0.0 142912 21720 ?        Ss   11:40   0:00 sshd: chloe [priv]
+chloe    3344703  0.0  0.0  90124 10076 ?        Ss   11:40   0:00 /usr/lib/systemd/systemd --user
+chloe    3344706  0.0  0.1 610196 102372 ?       S    11:40   0:00 (sd-pam)
+chloe    3344715  0.0  0.0 156396 30424 ?        S    11:40   0:00 sshd: chloe@pts/27
+chloe    3344717  0.0  0.0  66820 20648 pts/27   Ss+  11:40   0:00 -bash
+chloe    3344745  0.0  0.0 107408 31892 ?        Ss   11:40   0:00 /usr/bin/dbus-daemon --session --address=
+chloe    3344748  0.0  0.0 312912  9144 ?        Ssl  11:40   0:00 /usr/libexec/gvfsd
+kasen    3347006  0.0  0.0  90092 10024 ?        Ss   12:13   0:00 /usr/lib/systemd/systemd --user
+kasen    3347008  0.0  0.1 610196 102384 ?       S    12:13   0:00 (sd-pam)
+kasen    3347041  0.0  0.0 107408 31888 ?        Ss   12:13   0:00 /usr/bin/dbus-daemon --session --address=
+kasen    3347044  0.0  0.0 312912 11084 ?        Ssl  12:13   0:00 /usr/libexec/gvfsd
+kasen    3347110  0.0  0.0  12856  2956 ?        S    12:13   0:00 sh /u/cs/ugrad/kasen/.vscode-server/bin/9
+kasen    3347122  0.0  0.1 960976 83848 ?        Sl   12:13   0:14 /w/home.18/cs/ugrad/kasen/.vscode-server/
+kasen    3347170  0.1  0.1 747288 76696 ?        Sl   12:13   0:29 /w/home.18/cs/ugrad/kasen/.vscode-server/
+kasen    3347329  0.0  0.1 986208 102892 ?       Sl   12:13   0:09 /w/home.18/cs/ugrad/kasen/.vscode-server/
+chloe    3350492  0.0  0.0  79092 22804 pts/27   T    12:26   0:00 vim hello.c
+kasen    3360931  0.0  0.0  70828 21640 pts/1    Ss   12:47   0:00 /usr/local/cs/bin/bash --init-file /w/hom
+classmsr 3361663  0.0  0.0  90084 10164 ?        Ss   12:50   0:00 /usr/lib/systemd/systemd --user
+classmsr 3361668  0.0  0.1 610196 102424 ?       S    12:50   0:00 (sd-pam)
+classmsr 3361707  0.0  0.0 107408 31808 ?        Ss   12:50   0:00 /usr/bin/dbus-daemon --session --address=
+classmsr 3361710  0.0  0.0 312912  9136 ?        Ssl  12:50   0:00 /usr/libexec/gvfsd
+classmal 3362695  0.0  0.0  90048 10104 ?        Ss   12:57   0:00 /usr/lib/systemd/systemd --user
+classmal 3362697  0.0  0.1 610196 102440 ?       S    12:57   0:00 (sd-pam)
+classmal 3362736  0.0  0.0 107408 31800 ?        Ss   12:57   0:00 /usr/bin/dbus-daemon --session --address=
+classmal 3362739  0.0  0.0 312912  9244 ?        Ssl  12:57   0:00 /usr/libexec/gvfsd
+kasen    3362966  0.0  0.0 601904 45112 ?        Sl   12:59   0:00 /w/home.18/cs/ugrad/kasen/.vscode-server/
+ying     3368676  0.0  0.0  90072 10036 ?        Ss   13:57   0:00 /usr/lib/systemd/systemd --user
+ying     3368679  0.0  0.1 610196 102456 ?       S    13:57   0:00 (sd-pam)
+ying     3368720  0.0  0.0 107408 31764 ?        Ss   13:57   0:00 /usr/bin/dbus-daemon --session --address=
+ying     3368723  0.0  0.0 312912  9116 ?        Ssl  13:57   0:00 /usr/libexec/gvfsd
+classcat 3369735  0.0  0.0  90064 10376 ?        Ss   14:08   0:00 /usr/lib/systemd/systemd --user
+classcat 3369737  0.0  0.1 610196 102472 ?       S    14:08   0:00 (sd-pam)
+classcat 3369776  0.0  0.0 107408 31884 ?        Ss   14:08   0:00 /usr/bin/dbus-daemon --session --address=
+classcat 3369779  0.0  0.0 312912  9212 ?        Ssl  14:08   0:00 /usr/libexec/gvfsd
+classfft 3371185  0.0  0.0  90124 10488 ?        Ss   14:24   0:00 /usr/lib/systemd/systemd --user
+classfft 3371188  0.0  0.1 610196 102472 ?       S    14:24   0:00 (sd-pam)
+root     3371203  0.0  0.0 142912 21680 ?        Ss   14:25   0:00 sshd: classfft [priv]
+classfft 3371207  0.0  0.0 156396 30380 ?        S    14:25   0:00 sshd: classfft@pts/3
+classfft 3371209  0.0  0.0  66688 20244 pts/3    Ss+  14:25   0:00 -bash
+classfft 3371237  0.0  0.0 107408 31792 ?        Ss   14:25   0:00 /usr/bin/dbus-daemon --session --address=
+classfft 3371240  0.0  0.0 312912  8984 ?        Ssl  14:25   0:00 /usr/libexec/gvfsd
+root     3371962  0.0  0.0 142912 21656 ?        Ss   14:43   0:00 sshd: classhea [priv]
+classhea 3371972  0.0  0.0  90068 10216 ?        Ss   14:43   0:00 /usr/lib/systemd/systemd --user
+classhea 3371975  0.0  0.1 610196 102484 ?       S    14:43   0:00 (sd-pam)
+classhea 3371984  0.0  0.0 156396 30188 ?        S    14:43   0:00 sshd: classhea@pts/24
+classhea 3371986  0.0  0.0  66688 20304 pts/24   Ss+  14:43   0:00 -bash
+classhea 3372014  0.0  0.0 107408 31900 ?        Ss   14:43   0:00 /usr/bin/dbus-daemon --session --address=
+classhea 3372017  0.0  0.0 312912  9016 ?        Ssl  14:43   0:00 /usr/libexec/gvfsd
+root     3372186  0.0  0.0 142912 21676 ?        Ss   14:46   0:00 sshd: classmsr [priv]
+classmsr 3372189  0.0  0.0 156520 30124 ?        S    14:46   0:00 sshd: classmsr@pts/15
+classmsr 3372191  0.0  0.0  66688 20348 pts/15   Ss   14:46   0:00 -bash
+classlik 3372434  0.0  0.0  90060 10344 ?        Ss   14:50   0:00 /usr/lib/systemd/systemd --user
+classlik 3372437  0.0  0.1 610196 102484 ?       S    14:50   0:00 (sd-pam)
+classlik 3372483  0.0  0.0 107408 31764 ?        Ss   14:50   0:00 /usr/bin/dbus-daemon --session --address=
+classlik 3372486  0.0  0.0 312912  9296 ?        Ssl  14:50   0:00 /usr/libexec/gvfsd
+root     3372739  0.0  0.0 142912 21504 ?        Ss   14:54   0:00 sshd: classlpa [priv]
+classlpa 3372773  0.0  0.0  90084 10292 ?        Ss   14:54   0:00 /usr/lib/systemd/systemd --user
+classlpa 3372775  0.0  0.1 610196 102500 ?       S    14:54   0:00 (sd-pam)
+classlpa 3372784  0.0  0.0 156396 30132 ?        S    14:54   0:00 sshd: classlpa@pts/30
+classlpa 3372786  0.0  0.0  66688 20256 pts/30   Ss   14:54   0:00 -bash
+classlpa 3372814  0.0  0.0 107408 31796 ?        Ss   14:54   0:00 /usr/bin/dbus-daemon --session --address=
+classlpa 3372817  0.0  0.0 312912  9052 ?        Ssl  14:54   0:00 /usr/libexec/gvfsd
+schechte 3373029  0.0  0.0  90080 10152 ?        Ss   14:56   0:00 /usr/lib/systemd/systemd --user
+schechte 3373032  0.0  0.1 610196 102480 ?       S    14:56   0:00 (sd-pam)
+schechte 3373072  0.0  0.0 107408 31740 ?        Ss   14:56   0:00 /usr/bin/dbus-daemon --session --address=
+schechte 3373075  0.0  0.0 312912 11352 ?        Ssl  14:56   0:00 /usr/libexec/gvfsd
+classlpa 3373174  0.0  0.0 282560 10592 pts/30   T    14:57   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+root     3374005  0.0  0.0 156416 34104 ?        Ss   15:18   0:00 sshd: classsse [priv]
+classsse 3374013  0.0  0.0  90076 10252 ?        Ss   15:18   0:00 /usr/lib/systemd/systemd --user
+classsse 3374017  0.0  0.1 610196 102496 ?       S    15:18   0:00 (sd-pam)
+classsse 3374026  0.0  0.0 156492 30456 ?        S    15:18   0:00 sshd: classsse@pts/14
+classsse 3374028  0.0  0.0  66688 20368 pts/14   Ss+  15:18   0:00 -bash
+classsse 3374056  0.0  0.0 107408 31836 ?        Ss   15:18   0:00 /usr/bin/dbus-daemon --session --address=
+classsse 3374059  0.0  0.0 312912 11096 ?        Ssl  15:18   0:00 /usr/libexec/gvfsd
+root     3374870  0.0  0.0 142912 21716 ?        Ss   15:22   0:00 sshd: schechte [priv]
+schechte 3374873  0.0  0.0 156396 30380 ?        S    15:22   0:00 sshd: schechte@pts/21
+schechte 3374875  0.0  0.0  66688 20168 pts/21   Ss   15:22   0:00 -bash
+schechte 3374924  0.0  0.0 282548 10656 pts/21   S+   15:22   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+root     3374934  0.0  0.0 142912 21544 ?        Ss   15:22   0:00 sshd: ying [priv]
+ying     3374937  0.0  0.0 156400 30076 ?        S    15:22   0:00 sshd: ying@pts/34
+ying     3374939  0.0  0.0  66820 20544 pts/34   Ss   15:22   0:00 -bash
+classlpa 3375265  0.0  0.0 282560 10540 pts/30   T    15:24   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+classlpa 3375279  0.0  0.0 282560 10580 pts/30   T    15:25   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+classlpa 3375288  0.0  0.0 282560 10576 pts/30   T    15:26   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+classlpa 3375660  0.0  0.0 282560 10616 pts/30   T    15:28   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+root     3375663  0.0  0.0 156416 33940 ?        Ss   15:28   0:00 sshd: classcat [priv]
+classcat 3375667  0.0  0.0 156492 29528 ?        S    15:28   0:00 sshd: classcat@pts/18
+classcat 3375669  0.0  0.0  66688 20356 pts/18   Ss   15:28   0:00 -bash
+root     3375719  0.0  0.0 156416 34164 ?        Ss   15:28   0:00 sshd: classmal [priv]
+classmal 3375722  0.0  0.0 156492 30396 ?        S    15:28   0:00 sshd: classmal@pts/40
+classmal 3375724  0.0  0.0  66688 20320 pts/40   Ss   15:28   0:00 -bash
+classcat 3375773  0.0  0.0 369652 46828 pts/18   Sl+  15:28   0:00 emacs
+classcat 3375778  0.0  0.0  64976 18432 pts/45   Ss+  15:28   0:00 /bin/bash --noediting -i
+classlpa 3375794  0.0  0.0 282560 10520 pts/30   T    15:29   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+classlpa 3376037  0.0  0.0 281912 10240 pts/30   T    15:30   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+classlpa 3376137  0.0  0.0 282560 10692 pts/30   T    15:30   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+classlpa 3376272  0.0  0.0 284372 11944 pts/30   T    15:31   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+classlpa 3376291  0.0  0.0  20668  5072 pts/30   S+   15:31   0:00 nano hw1.ml
+classmsr 3376322  0.0  0.0 369104 47280 pts/15   Sl+  15:31   0:00 emacs notes.txt
+root     3377519  0.0  0.0 156416 34144 ?        Ss   15:40   0:00 sshd: tadeo [priv]
+tadeo    3377528  0.0  0.0  90080 10188 ?        Ss   15:40   0:00 /usr/lib/systemd/systemd --user
+tadeo    3377538  0.0  0.1 610196 102500 ?       S    15:40   0:00 (sd-pam)
+tadeo    3377547  0.0  0.0 156492 29824 ?        S    15:40   0:00 sshd: tadeo@pts/48
+tadeo    3377549  0.0  0.0  66688 20408 pts/48   Ss   15:40   0:00 -bash
+tadeo    3377598  0.0  0.0 107408 31876 ?        Ss   15:40   0:00 /usr/bin/dbus-daemon --session --address=
+tadeo    3377601  0.0  0.0 312912 11336 ?        Ssl  15:40   0:00 /usr/libexec/gvfsd
+tadeo    3377630  0.0  0.0 282548 10796 pts/48   S+   15:40   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+root     3377741  0.0  0.0 142912 21652 ?        Ss   15:40   0:00 sshd: classlhz [priv]
+classlhz 3377747  0.0  0.0  90060 10164 ?        Ss   15:40   0:00 /usr/lib/systemd/systemd --user
+classlhz 3377749  0.0  0.1 610196 102500 ?       S    15:40   0:00 (sd-pam)
+classlhz 3377758  0.0  0.0 156396 30284 ?        S    15:40   0:00 sshd: classlhz@pts/47
+classlhz 3377760  0.0  0.0  66688 20320 pts/47   Ss   15:40   0:00 -bash
+classlhz 3377788  0.0  0.0 107408 31764 ?        Ss   15:40   0:00 /usr/bin/dbus-daemon --session --address=
+classlhz 3377791  0.0  0.0 312912  9224 ?        Ssl  15:40   0:00 /usr/libexec/gvfsd
+ying     3377928  0.0  0.0  16920  3932 pts/34   S+   15:43   0:00 man comm
+ying     3377940  0.0  0.0   6776  1100 pts/34   S+   15:43   0:00 less
+classlhz 3378177  0.0  0.0 368656 47032 pts/47   Tl   15:46   0:00 emacs
+classlhz 3378240  0.0  0.0 368348 47276 pts/47   Tl   15:50   0:00 emacs
+root     3378466  0.0  0.0 142912 21644 ?        Ss   15:53   0:00 sshd: classhea [priv]
+classhea 3378477  0.0  0.0 156520 30320 ?        R    15:53   0:00 sshd: classhea@pts/2
+classhea 3378479  0.0  0.0  66788 20388 pts/2    Ss   15:53   0:00 -bash
+root     3378709  0.0  0.0 142912 21788 ?        Ss   15:54   0:00 sshd: hoggatt [priv]
+hoggatt  3378712  0.0  0.0 157204 31316 ?        S    15:54   0:00 sshd: hoggatt@pts/17
+hoggatt  3378714  0.0  0.0  66820 20640 pts/17   Ss   15:54   0:00 -bash
+root     3378927  0.0  0.0 142912 21652 ?        Ss   15:56   0:00 sshd: ying [priv]
+ying     3378931  0.0  0.0 158144 31856 ?        S    15:56   0:00 sshd: ying@pts/26
+ying     3378933  0.0  0.0  66820 20500 pts/26   Ss+  15:56   0:00 -bash
+classlhz 3379089  0.0  0.0 371068 49332 pts/47   Sl+  15:57   0:01 emacs
+root     3379581  0.0  0.0 142912 21848 ?        Ss   16:10   0:00 sshd: classlik [priv]
+classlik 3379594  0.0  0.0 156396 30512 ?        S    16:10   0:00 sshd: classlik@pts/7
+classlik 3379596  0.0  0.0  66688 20308 pts/7    Ss   16:10   0:00 -bash
+classlik 3379645  0.0  0.1 598792 66480 pts/7    Sl+  16:11   0:00 emacs -nw
+root     3379795  0.0  0.0 142912 21448 ?        Ss   16:15   0:00 sshd: schechte [priv]
+schechte 3379799  0.0  0.0 156396 30256 ?        S    16:15   0:00 sshd: schechte@pts/19
+schechte 3379801  0.0  0.0  66688 20420 pts/19   Ss   16:15   0:00 -bash
+root     3380012  0.0  0.0 142912 21496 ?        Ss   16:18   0:00 sshd: mingqi [priv]
+mingqi   3380029  0.0  0.0  90072 10208 ?        Ss   16:18   0:00 /usr/lib/systemd/systemd --user
+mingqi   3380031  0.0  0.1 610196 102508 ?       S    16:18   0:00 (sd-pam)
+mingqi   3380040  0.0  0.0 158228 32004 ?        S    16:18   0:00 sshd: mingqi@pts/35
+mingqi   3380042  0.0  0.0  66692 20300 pts/35   Ss+  16:18   0:00 -bash
+mingqi   3380070  0.0  0.0 107408 31960 ?        Ss   16:18   0:00 /usr/bin/dbus-daemon --session --address=
+mingqi   3380073  0.0  0.0 312912  9144 ?        Ssl  16:18   0:00 /usr/libexec/gvfsd
+mingqi   3380101  0.0  0.0  85604 29484 pts/35   T    16:19   0:00 vim sorted.words
+mingqi   3380787  0.0  0.0  12860  3068 pts/35   T    16:21   0:00 /bin/bash ./myspell sorted.words
+mingqi   3380788  0.0  0.0   7012   896 pts/35   T    16:21   0:00 tr -cs A-Za-z [\n*]
+mingqi   3380789  0.0  0.0  30900  1900 pts/35   T    16:21   0:00 sort -u
+mingqi   3380790  0.0  0.0   6996   880 pts/35   T    16:21   0:00 comm -23 - /dev/fd/63
+mingqi   3380791  0.0  0.0  12860  1688 pts/35   T    16:21   0:00 /bin/bash ./myspell sorted.words
+mingqi   3380792  0.0  0.0   7012   932 pts/35   T    16:21   0:00 tr -cs A-Za-z [\n*]
+classydu 3381991  0.0  0.0  90052 10360 ?        Ss   16:31   0:00 /usr/lib/systemd/systemd --user
+classydu 3381995  0.0  0.1 610196 102508 ?       S    16:31   0:00 (sd-pam)
+classydu 3382040  0.0  0.0 107408 31776 ?        Ss   16:31   0:00 /usr/bin/dbus-daemon --session --address=
+classydu 3382043  0.0  0.0 312912  9296 ?        Ssl  16:31   0:00 /usr/libexec/gvfsd
+classydu 3382139  0.0  0.0  12856  3112 ?        S    16:31   0:00 sh /u/eng/class/classydu/.vscode-server/b
+classydu 3382151  0.3  0.1 964200 87828 ?        Sl   16:31   0:11 /w/home.12/class/classydu/.vscode-server/
+classydu 3382199  0.0  0.0 723768 60300 ?        Sl   16:31   0:03 /w/home.12/class/classydu/.vscode-server/
+root     3382354  0.0  0.0 156416 34064 ?        Ss   16:31   0:00 sshd: classydu [priv]
+classydu 3382357  0.0  0.0 156808 30548 ?        S    16:31   0:00 sshd: classydu@notty
+classydu 3382359  0.0  0.0  64952 18256 ?        Ss   16:31   0:00 -bash
+classydu 3382402  0.0  0.0  13812  4268 ?        S    16:31   0:00 bash
+classydu 3382469  0.3  0.2 1048008 171548 ?      Sl   16:31   0:13 /w/home.12/class/classydu/.vscode-server/
+classydu 3382480  0.0  0.0 1044368 62272 ?       Sl   16:31   0:02 /w/home.12/class/classydu/.vscode-server/
+classydu 3382546  0.0  0.0  70784 20760 pts/41   Ss   16:31   0:00 /usr/local/cs/bin/bash --init-file /w/hom
+classydu 3382607  0.0  0.0 189212 32028 ?        Sl   16:31   0:00 /usr/local/cs/bin/python3 /w/home.12/clas
+classydu 3382617  0.0  0.1 857224 99428 ?        Sl   16:31   0:02 /w/home.12/class/classydu/.vscode-server/
+classydu 3382681  0.0  0.0 281908 10236 pts/41   S+   16:31   0:00 /usr/local/cs/ocaml-5.0.0/bin/ocamlrun /u
+classydu 3382788  0.5  0.1 986104 101144 ?       Sl   16:31   0:18 /u/eng/class/classydu/.vscode-server/exte
+classwid 3384113  0.0  0.0  90044 10128 ?        Ss   16:35   0:00 /usr/lib/systemd/systemd --user
+classwid 3384116  0.0  0.1 610196 102508 ?       S    16:35   0:00 (sd-pam)
+classwid 3384155  0.0  0.0 107408 31752 ?        Ss   16:35   0:00 /usr/bin/dbus-daemon --session --address=
+classwid 3384158  0.0  0.0 312912 11316 ?        Ssl  16:35   0:00 /usr/libexec/gvfsd
+root     3384792  0.0  0.0 142912 21668 ?        Ss   16:37   0:00 sshd: classwid [priv]
+classwid 3384819  0.0  0.0 156396 30372 ?        S    16:37   0:00 sshd: classwid@pts/5
+classwid 3384821  0.0  0.0  66688 20472 pts/5    Ss   16:37   0:00 -bash
+kasen    3385233  0.0  0.0  70788 21120 pts/20   Ss+  16:38   0:00 /usr/local/cs/bin/bash --init-file /w/hom
+kasen    3385276  0.0  0.0  70764 22108 pts/25   Ss+  16:38   0:00 /usr/local/cs/bin/bash --init-file /w/hom
+root     3385429  0.0  0.0 142912 21512 ?        Ss   16:39   0:00 sshd: lob [priv]
+lob      3385465  0.0  0.0  90076 10224 ?        Ss   16:39   0:00 /usr/lib/systemd/systemd --user
+lob      3385467  0.0  0.1 610196 102508 ?       S    16:39   0:00 (sd-pam)
+lob      3385476  0.0  0.0 156396 30076 ?        S    16:39   0:00 sshd: lob@pts/28
+lob      3385478  0.0  0.0  66820 20628 pts/28   Ss   16:39   0:00 -bash
+lob      3385506  0.0  0.0 107408 31888 ?        Ss   16:39   0:00 /usr/bin/dbus-daemon --session --address=
+lob      3385509  0.0  0.0 312912  9260 ?        Ssl  16:39   0:00 /usr/libexec/gvfsd
+classmal 3385587  0.1  0.0 374244 52468 pts/40   Sl+  16:39   0:03 emacs
+root     3385591  0.0  0.0 156416 34104 ?        Ss   16:39   0:00 sshd: bugarin [priv]
+bugarin  3385984  0.0  0.0  89968  9940 ?        Ss   16:40   0:00 /usr/lib/systemd/systemd --user
+bugarin  3385988  0.0  0.1 610196 102548 ?       S    16:40   0:00 (sd-pam)
+bugarin  3385997  0.0  0.0 156492 29836 ?        S    16:40   0:00 sshd: bugarin@pts/29
+bugarin  3385999  0.0  0.0  66820 20588 pts/29   Ss+  16:40   0:00 -bash
+bugarin  3386029  0.0  0.0 107408 31844 ?        Ss   16:40   0:00 /usr/bin/dbus-daemon --session --address=
+bugarin  3386032  0.0  0.0 312912 11496 ?        Ssl  16:40   0:00 /usr/libexec/gvfsd
+schechte 3386623  0.0  0.0 121700 16884 pts/19   S+   16:41   0:00 python3
+root     3387551  0.0  0.0 156416 34128 ?        Ss   16:45   0:00 sshd: classmal [priv]
+classmal 3387556  0.0  0.0 156492 30104 ?        S    16:45   0:00 sshd: classmal@pts/31
+classmal 3387558  0.0  0.0  66688 20524 pts/31   Ss   16:45   0:00 -bash
+classmal 3387667  0.0  0.0  79908 23428 pts/31   S+   16:45   0:01 vim exer1.html
+root     3387873  0.0  0.0 156416 34160 ?        Ss   16:46   0:00 sshd: pirjot [priv]
+pirjot   3387879  0.0  0.0  89964 10004 ?        Ss   16:46   0:00 /usr/lib/systemd/systemd --user
+pirjot   3387882  0.0  0.1 610196 102548 ?       S    16:46   0:00 (sd-pam)
+pirjot   3387891  0.0  0.0 156492 30032 ?        S    16:46   0:00 sshd: pirjot@pts/16
+pirjot   3387893  0.0  0.0  66820 20772 pts/16   Ss   16:46   0:00 -bash
+pirjot   3387921  0.0  0.0 107408 31896 ?        Ss   16:46   0:00 /usr/bin/dbus-daemon --session --address=
+pirjot   3387924  0.0  0.0 312912  9448 ?        Ssl  16:46   0:00 /usr/libexec/gvfsd
+root     3388138  0.0  0.0      0     0 ?        I    16:46   0:01 [kworker/u480:0-rpciod]
+root     3389723  0.0  0.0      0     0 ?        I    16:53   0:01 [kworker/u480:2-events_unbound]
+root     3390842  0.0  0.0      0     0 ?        I    16:59   0:00 [kworker/3:1-events]
+root     3391168  0.0  0.0      0     0 ?        I    17:00   0:00 [kworker/3:3-cgroup_pidlist_destroy]
+root     3391235  0.0  0.0 156416 34184 ?        Ss   17:00   0:00 sshd: classliu [priv]
+classliu 3391243  0.0  0.0  89960 10040 ?        Ss   17:00   0:00 /usr/lib/systemd/systemd --user
+classliu 3391249  0.0  0.1 610196 102548 ?       S    17:00   0:00 (sd-pam)
+classliu 3391258  0.0  0.0 158764 32472 ?        S    17:00   0:00 sshd: classliu@pts/22
+classliu 3391260  0.0  0.0  66688 20600 pts/22   Ss+  17:00   0:00 -bash
+classliu 3391288  0.0  0.0 107408 31792 ?        Ss   17:00   0:00 /usr/bin/dbus-daemon --session --address=
+classliu 3391291  0.0  0.0 312912  9452 ?        Ssl  17:00   0:00 /usr/libexec/gvfsd
+root     3391484  0.0  0.0 142912 21548 ?        Ss   17:01   0:00 sshd: kasen [priv]
+kasen    3391504  0.0  0.0 156396 30056 ?        S    17:01   0:00 sshd: kasen@notty
+kasen    3391506  0.0  0.0  64952 18548 ?        Ss   17:01   0:00 -bash
+kasen    3391549  0.0  0.0  13820  4344 ?        S    17:01   0:00 bash
+kasen    3391730  0.0  0.0 370828 48356 pts/1    Sl+  17:02   0:00 emacs
+pirjot   3391787  0.0  0.0  20904  5660 pts/16   S+   17:02   0:00 nano notes.txt
+root     3392946  0.0  0.0 142912 21620 ?        Ss   17:07   0:00 sshd: schechte [priv]
+schechte 3392963  0.0  0.0 156396 30112 ?        S    17:07   0:00 sshd: schechte@pts/37
+schechte 3392965  0.0  0.0  66688 20532 pts/37   Ss+  17:07   0:00 -bash
+root     3394538  0.0  0.0      0     0 ?        I<   17:14   0:00 [kworker/u481:3-xprtiod]
+root     3394621  0.0  0.0 142912 21140 ?        Ss   17:14   0:00 sshd: classalv [priv]
+classalv 3394642  0.0  0.0 156772 30748 ?        S    17:14   0:00 sshd: classalv@notty
+classalv 3394644  0.0  0.0  64952 18340 ?        Ss   17:14   0:00 -bash
+classalv 3394687  0.0  0.0  13384  3912 ?        S    17:14   0:00 bash
+classalv 3394738  0.3  0.2 1026636 140604 ?      Sl   17:14   0:04 /w/home.15/class/classalv/.vscode-server/
+classalv 3394754  0.0  0.0 847416 45036 ?        Sl   17:14   0:00 /w/home.15/class/classalv/.vscode-server/
+classalv 3394801  0.0  0.0  65108 18748 pts/11   Ss+  17:14   0:00 /usr/local/bin/bash --init-file /w/home.1
+classalv 3394834  0.0  0.0  65204 18664 pts/13   Ss+  17:14   0:00 /usr/local/bin/bash --init-file /w/home.1
+root     3394888  0.0  0.0      0     0 ?        I    17:14   0:00 [kworker/2:1-events_power_efficient]
+root     3394928  0.0  0.0      0     0 ?        I    17:14   0:00 [kworker/1:2-cgroup_pidlist_destroy]
+root     3395532  0.0  0.0      0     0 ?        I    17:19   0:00 [kworker/0:0-mm_percpu_wq]
+root     3395550  0.0  0.0      0     0 ?        I<   17:19   0:00 [kworker/u481:1-xprtiod]
+root     3395758  0.0  0.0      0     0 ?        I    17:19   0:00 [kworker/2:3-cgroup_destroy]
+classwid 3396189  0.1  0.0 373336 51612 pts/5    Sl+  17:20   0:00 emacs
+classalv 3396475  0.1  0.1 649696 93688 ?        Sl   17:21   0:00 /w/home.15/class/classalv/.vscode-server/
+root     3396531  0.0  0.0 142912 21664 ?        Ss   17:22   0:00 sshd: classven [priv]
+root     3396553  0.0  0.0      0     0 ?        I    17:22   0:00 [kworker/1:5-cgroup_destroy]
+classven 3396556  0.0  0.0  89968 10224 ?        Ss   17:22   0:00 /usr/lib/systemd/systemd --user
+classven 3396558  0.0  0.1 610196 102548 ?       S    17:22   0:00 (sd-pam)
+classven 3396572  0.0  0.0 156396 30100 ?        S    17:22   0:00 sshd: classven@pts/0
+classven 3396574  0.0  0.0  66688 20588 pts/0    Ss+  17:22   0:00 -bash
+classven 3396611  0.0  0.0 107408 30908 ?        Ss   17:22   0:00 /usr/bin/dbus-daemon --session --address=
+classven 3396614  0.0  0.0 312912  9216 ?        Ssl  17:22   0:00 /usr/libexec/gvfsd
+root     3396744  0.0  0.0      0     0 ?        I    17:24   0:00 [kworker/0:1-events]
+root     3396754  0.0  0.0      0     0 ?        I    17:25   0:00 [kworker/u480:1-events_unbound]
+root     3397042  0.0  0.0      0     0 ?        I    17:27   0:00 [kworker/u480:3-rpciod]
+root     3397043  0.0  0.0      0     0 ?        I<   17:27   0:00 [kworker/u481:0-xprtiod]
+hoggatt  3397067  0.2  0.0 374440 51580 pts/17   Sl+  17:27   0:00 emacs
+root     3397264  0.0  0.0      0     0 ?        I    17:28   0:00 [kworker/2:0-events]
+root     3397336  0.0  0.0      0     0 ?        I    17:29   0:00 [kworker/3:0-cgroup_pidlist_destroy]
+root     3397339  0.0  0.0      0     0 ?        I    17:29   0:00 [kworker/1:0-mm_percpu_wq]
+root     3397341  0.0  0.0      0     0 ?        I    17:29   0:00 [kworker/1:1-cgroup_destroy]
+root     3397344  0.0  0.0      0     0 ?        I    17:29   0:00 [kworker/3:2-events]
+root     3397454  0.0  0.0 142912 21644 ?        Ss   17:29   0:00 sshd: classmsr [priv]
+classmsr 3397461  0.0  0.0 156396 30240 ?        S    17:29   0:00 sshd: classmsr@pts/4
+classmsr 3397463  0.0  0.0  66688 20588 pts/4    Ss   17:29   0:00 -bash
+root     3397513  0.0  0.0 142912 21616 ?        Ss   17:29   0:00 sshd: classpan [priv]
+root     3397520  0.0  0.0      0     0 ?        I    17:30   0:00 [kworker/0:2-events_freezable_power_]
+root     3397523  0.0  0.0      0     0 ?        I    17:30   0:00 [kworker/2:2-cgroup_pidlist_destroy]
+classpan 3397524  0.1  0.0  89876 10040 ?        Ss   17:30   0:00 /usr/lib/systemd/systemd --user
+classpan 3397526  0.0  0.1 610196 102548 ?       S    17:30   0:00 (sd-pam)
+classpan 3397535  0.0  0.0 156396 30164 ?        S    17:30   0:00 sshd: classpan@pts/23
+classpan 3397537  0.0  0.0  66688 20496 pts/23   Ss   17:30   0:00 -bash
+classpan 3397565  0.0  0.0 107408 30812 ?        Ss   17:30   0:00 /usr/bin/dbus-daemon --session --address=
+classpan 3397568  0.0  0.0 312912  9380 ?        Ssl  17:30   0:00 /usr/libexec/gvfsd
+classpan 3397601  0.2  0.0 368412 45496 pts/23   Sl+  17:30   0:00 emacs
+root     3397615  0.0  0.0 142912 21712 ?        Ss   17:30   0:00 sshd: classpan [priv]
+classpan 3397618  0.0  0.0 156396 30092 ?        S    17:30   0:00 sshd: classpan@pts/6
+classpan 3397620  0.0  0.0  66688 20292 pts/6    Ss+  17:30   0:00 -bash
+root     3397673  0.0  0.0 142912 20776 ?        Ss   17:31   0:00 sshd: millerr [priv]
+millerr  3397678  0.3  0.0  89736 10140 ?        Ss   17:31   0:00 /usr/lib/systemd/systemd --user
+root     3397680  0.0  0.0      0     0 ?        I<   17:31   0:00 [kworker/u481:2-xprtiod]
+millerr  3397682  0.0  0.1 610196 102548 ?       S    17:31   0:00 (sd-pam)
+millerr  3397691  0.1  0.0 158160 31824 ?        S    17:31   0:00 sshd: millerr@notty
+millerr  3397693  0.0  0.0  63112 18028 ?        Ss   17:31   0:00 /usr/libexec/openssh/sftp-server
+lob      3397694  0.1  0.0  79064 22844 pts/28   S+   17:31   0:00 vim myspell
+classmsr 3397698  0.9  0.0 368240 44848 pts/4    Sl+  17:31   0:00 emacs q12script.sh
+classhea 3397701  0.0  0.0  90604 18308 pts/2    R+   17:31   0:00 ps aux -C xagt
+rtkit    3826433  0.0  0.0 191720    16 ?        SNsl  2022   2:26 /usr/libexec/rtkit-daemon
